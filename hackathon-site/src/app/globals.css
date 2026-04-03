@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@font-face {
+  font-family: "CountdownDisplay";
+  src: url("/fonts/archivo-black/ArchivoBlack-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.countdown-container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.countdown {
+  z-index: 1;
+  user-select: none;
+  font-family: "CountdownDisplay";
+  font-size: clamp(4rem, 16vw, 14rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  transform: scaleY(1.52);
+  transform-origin: center;
+
+  background: linear-gradient(
+    to bottom,
+    #f2f8ff 0%,
+    #b8d6ff 22%,
+    #7aa7f5 42%,
+    #2f67d1 66%,
+    #10214f 100%
+  );
+  color: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: saturate(1.15) contrast(1.05);
+
+  text-shadow:
+    0 -2px 0 rgba(255, 255, 255, 0.75),
+    0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 0 #597fc7,
+    0 4px 0 #3e65b3,
+    0 6px 0 #35589f,
+    0 8px 0 #304779,
+    0 12px 14px rgba(0, 0, 0, 0.42),
+    0 20px 26px rgba(0, 0, 0, 0.3);
+}
+
+.background {
+  position: fixed;
+  z-index: -100;
+  min-height: 100vh;
+  background-color: black;
+}
