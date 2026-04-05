@@ -3,7 +3,7 @@ import Background from "@/src/components/background"
 
 export default function Page() {
   return(
-    <div className="">
+    <div>
       <Background />
       <Countdown />
     </div>

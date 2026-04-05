@@ -29,9 +29,13 @@ function getCountdownParts(target: Date): CountdownParts {
 }
 
 export default function Countdown() {
-  const [countdown, setCountdown] = useState<CountdownParts>(() =>
-    getCountdownParts(TARGET_DATE)
-  );
+  const [countdown, setCountdown] = useState<CountdownParts>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isComplete: false,
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {

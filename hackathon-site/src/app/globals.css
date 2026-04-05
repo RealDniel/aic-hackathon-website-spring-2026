@@ -3,9 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -33,6 +30,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
 .countdown-container {
   min-height: 100vh;
   display: grid;
@@ -52,30 +60,31 @@ body {
   display: inline-block;
   transform: scaleY(1.52);
   transform-origin: center;
+  opacity: 0.68;
+  mix-blend-mode: screen;
 
   background: linear-gradient(
-    to bottom,
-    #f2f8ff 0%,
-    #b8d6ff 22%,
-    #7aa7f5 42%,
-    #2f67d1 66%,
-    #10214f 100%
+    120deg,
+    rgba(236, 252, 255, 0.96) 0%,
+    rgba(147, 250, 255, 0.94) 24%,
+    rgba(182, 145, 255, 0.92) 48%,
+    rgba(123, 236, 255, 0.9) 72%,
+    rgba(228, 216, 255, 0.93) 100%
   );
+  background-size: 320% 320%;
   color: #ffffff;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: saturate(1.15) contrast(1.05);
+  -webkit-text-stroke: 1px rgba(223, 239, 255, 0.34);
+  filter: saturate(1.2) contrast(0.9) brightness(1.24);
 
   text-shadow:
-    0 -2px 0 rgba(255, 255, 255, 0.75),
-    0 1px 0 rgba(255, 255, 255, 0.25),
-    0 2px 0 #597fc7,
-    0 4px 0 #3e65b3,
-    0 6px 0 #35589f,
-    0 8px 0 #304779,
-    0 12px 14px rgba(0, 0, 0, 0.42),
-    0 20px 26px rgba(0, 0, 0, 0.3);
+    0 0 2px rgba(222, 248, 255, 0.95),
+    0 0 16px rgba(136, 242, 255, 0.72),
+    0 0 34px rgba(174, 150, 255, 0.65),
+    0 0 68px rgba(160, 122, 255, 0.5),
+    0 0 108px rgba(111, 228, 255, 0.34);
 }
 
 .background {
