@@ -42,18 +42,18 @@ body {
 }
 
 .countdown-container {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 2rem;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  text-align: right;
+  padding: 0;
 }
 
 .countdown {
   z-index: 1;
   user-select: none;
   font-family: "CountdownDisplay";
-  font-size: clamp(4rem, 16vw, 14rem);
+  font-size: clamp(1.33rem, 5.33vw, 4.67rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.02em;

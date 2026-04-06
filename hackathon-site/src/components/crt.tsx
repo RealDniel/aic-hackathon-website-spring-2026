@@ -38,8 +38,8 @@ export default function CRT() {
     app.stage.addChild(magentaLayer);
 
     const crtFilter = new CRTFilter({
-      curvature: 1.2,
-      lineWidth: 2,
+      curvature: 2,
+      lineWidth: 2.5,
       lineContrast: 0.35,
       verticalLine: false,
       noise: 0.0,
