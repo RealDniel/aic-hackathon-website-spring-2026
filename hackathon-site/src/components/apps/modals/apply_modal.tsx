@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { submitRegistration } from "@/src/actions/submit_registration";
 
 type ApplyModalProps = {
     isOpen: boolean;
@@ -8,19 +9,32 @@ type ApplyModalProps = {
 };
 
 export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [submitError, setSubmitError] = useState("")
     const [emailError, setEmailError] = useState("");
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setSubmitError("");
+
         const formData = new FormData(event.currentTarget);
         const emailValue = String(formData.get("email") ?? "").trim().toLowerCase();
 
         if (!emailValue.endsWith("@oregonstate.edu")) {
-            event.preventDefault();
             setEmailError("Please use an email ending in @oregonstate.edu");
             return;
         }
 
         setEmailError("");
+        setStatus("loading")
+
+        try {
+            await submitRegistration(formData);
+            setStatus("success")
+        } catch (err) {
+            setSubmitError(err instanceof Error ? err.message : "Something went wrong");
+            setStatus("error");
+        }
     };
 
     if (!isOpen) {
@@ -97,12 +111,12 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-experience" className="text-m uppercase tracking-[0.12em] text-white/78">
+                            <label htmlFor="apply-hackathon-experience" className="text-m uppercase tracking-[0.12em] text-white/78">
                                 Hackathon Experience
                             </label>
                             <select
-                                id="apply-experience"
-                                name="experience"
+                                id="apply-hackathon-experience"
+                                name="hackathon_experience"
                                 required
                                 defaultValue=""
                                 className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/85 outline-none focus:border-cyan-200/55"
@@ -110,9 +124,29 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 <option value="" disabled>
                                     Select an option
                                 </option>
-                                <option value="never">Never competed in a hackathon</option>
-                                <option value="few">Competed in a few hackathons</option>
-                                <option value="pro">Hackathon pro</option>
+                                <option value="low">Never competed in a hackathon</option>
+                                <option value="medium">Competed in a few hackathons</option>
+                                <option value="high">Hackathon pro</option>
+                            </select>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="apply-ai-experience" className="text-m uppercase tracking-[0.12em] text-white/78">
+                                AI Experience
+                            </label>
+                            <select
+                                id="apply-ai-experience"
+                                name="ai_experience"
+                                required
+                                defaultValue=""
+                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/85 outline-none focus:border-cyan-200/55"
+                            >
+                                <option value="" disabled>
+                                    Select an option
+                                </option>
+                                <option value="low">Brand new to AI!</option>
+                                <option value="medium">Familiar with core concepts</option>
+                                <option value="high">AI Pro</option>
                             </select>
                         </div>
 
@@ -120,12 +154,21 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                             Disclaimer: Resume and experience level are collected purely to help us design engaging events for attendees!
                         </p>
 
-                        <button
-                            type="submit"
-                            className="mt-1 w-fit border border-white/35 bg-black/35 px-5 py-2 text-sm uppercase tracking-[0.1em] text-white/85 transition-colors hover:border-cyan-200/65 hover:text-white"
-                        >
-                            Submit
-                        </button>
+
+                        {(status === "success") ? (
+                            <p className="pt-1 text-xs leading-relaxed text-white/58">We have received your application and will reach out soon!</p>
+                        ) : (
+                            <>
+                                {submitError && <p className="text-xs text-red-200/80">{submitError}</p>}
+                                <button
+                                type="submit"
+                                disabled={status === "loading"}
+                                className="mt-1 w-fit border border-white/35 bg-black/35 px-5 py-2 text-sm uppercase tracking-[0.1em] text-white/85 transition-colors hover:border-cyan-200/65 hover:text-white disabled:opacity-50"
+                                >
+                                {status === "loading" ? "Submitting..." : "Submit"}
+                                </button>
+                            </>
+                        )}
                     </form>
                 </div>
             </section>
