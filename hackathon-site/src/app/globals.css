@@ -58,8 +58,36 @@ body {
   line-height: 1;
   letter-spacing: 0.02em;
   display: inline-block;
-  transform: scaleY(1.52);
   transform-origin: center;
+  opacity: 0.68;
+  mix-blend-mode: screen;
+
+  background: linear-gradient(
+    120deg,
+    rgba(236, 252, 255, 0.96) 0%,
+    rgba(147, 250, 255, 0.94) 24%,
+    rgba(182, 145, 255, 0.92) 48%,
+    rgba(123, 236, 255, 0.9) 72%,
+    rgba(228, 216, 255, 0.93) 100%
+  );
+  background-size: 320% 320%;
+  color: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(223, 239, 255, 0.34);
+  filter: saturate(1.2) contrast(0.9) brightness(1.24);
+
+  text-shadow:
+    0 0 2px rgba(222, 248, 255, 0.95),
+    0 0 16px rgba(136, 242, 255, 0.72),
+    0 0 34px rgba(174, 150, 255, 0.65),
+    0 0 68px rgba(160, 122, 255, 0.5),
+    0 0 108px rgba(111, 228, 255, 0.34);
+}
+
+.app-text {
+  font-family: "CountdownDisplay", sans-serif;
   opacity: 0.68;
   mix-blend-mode: screen;
 
@@ -92,4 +120,99 @@ body {
   z-index: -100;
   min-height: 100vh;
   background-color: black;
+}
+
+.app {
+  position: fixed;
+  width: clamp(5.25rem, 10.5vw, 7.5rem);
+  height: clamp(5.25rem, 10.5vw, 7.5rem);
+
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 1px rgba(222, 248, 255, 0.14),
+    0 0 8px rgba(136, 242, 255, 0.34),
+    0 0 16px rgba(174, 150, 255, 0.32),
+    0 0 32px rgba(160, 122, 255, 0.22),
+    0 0 52px rgba(111, 228, 255, 0.14);
+    
+  z-index: 30;
+
+  /* Override per app instance if you need unique shortcut positions. */
+  top: var(--app-top, 2.25rem);
+  left: var(--app-left, 2.25rem);
+
+}
+
+.apply-modal-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.apply-modal-window {
+  width: min(70rem, calc(100vw - 2rem));
+  min-height: min(44rem, calc(100vh - 2rem));
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(230, 244, 255, 0.23);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 20, 0.84) 0%,
+    rgba(5, 7, 10, 0.9) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(222, 248, 255, 0.08),
+    0 0 10px rgba(136, 242, 255, 0.2),
+    0 0 24px rgba(174, 150, 255, 0.16);
+}
+
+.apply-modal-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.95rem;
+  border-bottom: 1px solid rgba(223, 239, 255, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(226, 243, 255, 0.11) 0%,
+    rgba(127, 181, 227, 0.05) 100%
+  );
+}
+
+.apply-modal-title {
+  opacity: 0.78;
+  user-select: none;
+}
+
+.apply-modal-close {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid rgba(222, 248, 255, 0.26);
+  border-radius: 0.2rem;
+  background: rgba(4, 8, 13, 0.55);
+  color: rgba(232, 245, 255, 0.72);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-shadow:
+    0 0 4px rgba(224, 246, 255, 0.38),
+    0 0 10px rgba(140, 239, 255, 0.2);
+}
+
+.apply-modal-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  color: rgba(228, 243, 255, 0.68);
 }
