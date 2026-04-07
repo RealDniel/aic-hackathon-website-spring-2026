@@ -7,7 +7,7 @@ import ApplyApp from "@/src/components/apps/apply_app"
 import ApplyModal from "@/src/components/apps/modals/apply_modal"
 
 export default function Page() {
-  const [isApplyOpen, setIsApplyOpen] = useState(true);
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
 
   return(
     <div>
