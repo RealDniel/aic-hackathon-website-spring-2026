@@ -74,7 +74,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 aria-invalid={Boolean(emailError)}
                                 aria-describedby="apply-email-error"
                                 className="w-full border border-white/25 bg-black/25 px-3 py-2 text-sm text-white/85 outline-none placeholder:text-white/45 focus:border-cyan-200/55"
-                                placeholder="you@oregonstate.edu"
+                                placeholder="chenz22@oregonstate.edu"
                             />
                             {emailError ? (
                                 <p id="apply-email-error" className="text-xs text-red-200/80">
