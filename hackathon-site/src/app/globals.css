@@ -161,7 +161,11 @@ body {
   border-radius: 0.4rem;
   overflow: hidden;
   border: 1px solid rgba(230, 244, 255, 0.23);
-
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 20, 0.84) 0%,
+    rgba(5, 7, 10, 0.9) 100%
+  );
   box-shadow:
     0 0 0 1px rgba(222, 248, 255, 0.08),
     0 0 10px rgba(136, 242, 255, 0.2),
