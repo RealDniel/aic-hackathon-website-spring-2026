@@ -12,6 +12,9 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [submitError, setSubmitError] = useState("")
     const [emailError, setEmailError] = useState("");
+    const raisedBorder = "border border-solid [border-color:var(--win95-light)_var(--win95-dark)_var(--win95-dark)_var(--win95-light)]";
+    const sunkenBorder = "border border-solid [border-color:var(--win95-dark)_var(--win95-light)_var(--win95-light)_var(--win95-dark)]";
+    const dottedFocus = "focus-visible:outline focus-visible:outline-1 focus-visible:outline-dotted focus-visible:outline-black focus-visible:outline-offset-[-3px]";
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -43,24 +46,32 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
 
     return (
         <div
-            className="apply-modal-shell"
+            className="fixed inset-0 z-[35] grid place-items-center bg-black/20 p-[0.9rem] max-[760px]:items-start max-[760px]:p-[0.45rem] max-[760px]:pb-[calc(var(--taskbar-height)+0.45rem)]"
             role="dialog"
             aria-modal="true"
             aria-label="Apply"
             onClick={onClose}
         >
-            <section className="apply-modal-window" onClick={(event) => event.stopPropagation()}>
-                <header className="apply-modal-titlebar">
-                    <span className="app-text apply-modal-title text-base leading-none">APPLY</span>
-                    <button type="button" className="apply-modal-close" onClick={onClose}>
+            <section
+                className={`flex w-[min(48rem,calc(100vw-1rem))] max-h-[calc(100vh-var(--taskbar-height)-1.2rem)] flex-col overflow-hidden bg-[var(--win95-face)] shadow-[inset_1px_1px_0_var(--win95-light),inset_-1px_-1px_0_var(--win95-shadow),2px_2px_0_#000,0_0_24px_rgba(120,255,255,0.14)] max-[760px]:w-full max-[760px]:max-h-[calc(100vh-var(--taskbar-height)-1rem)] ${raisedBorder}`}
+                onClick={(event) => event.stopPropagation()}
+            >
+                <header className="flex min-h-[1.8rem] items-center justify-between border-b border-b-[var(--win95-shadow)] bg-[linear-gradient(90deg,var(--win95-title-start)_0%,var(--win95-title-end)_100%)] px-[0.45rem] py-[0.2rem] pr-[0.32rem]">
+                    <span className="select-none text-[0.84rem] font-bold tracking-[0.02em] text-white [text-shadow:0_0_1px_rgba(217,255,255,0.8),0_0_12px_rgba(0,255,255,0.25)]">APPLICATION</span>
+                    <button
+                        type="button"
+                        className={`h-[1.15rem] w-[1.2rem] cursor-pointer bg-[var(--win95-face)] text-[0.76rem] font-bold leading-none text-black active:pt-px active:[border-color:var(--win95-dark)_var(--win95-light)_var(--win95-light)_var(--win95-dark)] ${raisedBorder}`}
+                        onClick={onClose}
+                        aria-label="Close window"
+                    >
                         X
                     </button>
                 </header>
 
-                <div className="apply-modal-body">
-                    <form className="mx-auto flex w-full max-w-3xl flex-col gap-5" onSubmit={handleSubmit}>
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-name" className="text-m uppercase tracking-[0.12em] text-white/78">
+                <div className="min-h-0 flex-1 overflow-auto p-[0.85rem] text-black">
+                    <form className="mx-auto grid w-full max-w-[38rem] gap-[0.7rem]" onSubmit={handleSubmit}>
+                        <div className="grid gap-[0.2rem]">
+                            <label htmlFor="apply-name" className="text-[0.76rem] font-bold tracking-[0.01em]">
                                 Name
                             </label>
                             <input
@@ -69,13 +80,13 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 type="text"
                                 autoComplete="name"
                                 required
-                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/85 outline-none placeholder:text-white/45 focus:border-cyan-200/55"
+                                className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black placeholder:text-[#666] outline-none ${sunkenBorder} ${dottedFocus}`}
                                 placeholder="Zheng Chen"
                             />
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-email" className="text-m uppercase tracking-[0.12em] text-white/78">
+                        <div className="grid gap-[0.2rem]">
+                            <label htmlFor="apply-email" className="text-[0.76rem] font-bold tracking-[0.01em]">
                                 Oregon State Email
                             </label>
                             <input
@@ -87,18 +98,18 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 required
                                 aria-invalid={Boolean(emailError)}
                                 aria-describedby="apply-email-error"
-                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-sm text-white/85 outline-none placeholder:text-white/45 focus:border-cyan-200/55"
+                                className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black placeholder:text-[#666] outline-none ${sunkenBorder} ${dottedFocus}`}
                                 placeholder="chenz22@oregonstate.edu"
                             />
                             {emailError ? (
-                                <p id="apply-email-error" className="text-xs text-red-200/80">
+                                <p id="apply-email-error" className="m-0 text-[0.74rem] text-[#8b0000]">
                                     {emailError}
                                 </p>
                             ) : null}
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-resume" className="text-m uppercase tracking-[0.12em] text-white/78">
+                        <div className="grid gap-[0.2rem]">
+                            <label htmlFor="apply-resume" className="text-[0.76rem] font-bold tracking-[0.01em]">
                                 Resume (Optional)
                             </label>
                             <input
@@ -106,12 +117,12 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 name="resume"
                                 type="file"
                                 accept=".pdf,.doc,.docx"
-                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/78 file:mr-3 file:border file:border-white/30 file:bg-black/35 file:px-3 file:py-1 file:text-xs file:uppercase file:tracking-[0.08em] file:text-white/80"
+                                className={`min-h-[1.8rem] w-full bg-white p-[0.2rem] text-[0.8rem] text-black outline-none file:mr-[0.5rem] file:cursor-pointer file:border file:border-solid file:bg-[var(--win95-face)] file:px-[0.4rem] file:py-[0.18rem] file:text-[0.74rem] file:text-black file:[border-color:var(--win95-light)_var(--win95-dark)_var(--win95-dark)_var(--win95-light)] ${sunkenBorder} ${dottedFocus}`}
                             />
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-hackathon-experience" className="text-m uppercase tracking-[0.12em] text-white/78">
+                        <div className="grid gap-[0.2rem]">
+                            <label htmlFor="apply-hackathon-experience" className="text-[0.76rem] font-bold tracking-[0.01em]">
                                 Hackathon Experience
                             </label>
                             <select
@@ -119,7 +130,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 name="hackathon_experience"
                                 required
                                 defaultValue=""
-                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/85 outline-none focus:border-cyan-200/55"
+                                className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black outline-none ${sunkenBorder} ${dottedFocus}`}
                             >
                                 <option value="" disabled>
                                     Select an option
@@ -130,8 +141,8 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                             </select>
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="apply-ai-experience" className="text-m uppercase tracking-[0.12em] text-white/78">
+                        <div className="grid gap-[0.2rem]">
+                            <label htmlFor="apply-ai-experience" className="text-[0.76rem] font-bold tracking-[0.01em]">
                                 AI Experience
                             </label>
                             <select
@@ -139,7 +150,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 name="ai_experience"
                                 required
                                 defaultValue=""
-                                className="w-full border border-white/25 bg-black/25 px-3 py-2 text-m text-white/85 outline-none focus:border-cyan-200/55"
+                                className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black outline-none ${sunkenBorder} ${dottedFocus}`}
                             >
                                 <option value="" disabled>
                                     Select an option
@@ -150,20 +161,20 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                             </select>
                         </div>
 
-                        <p className="pt-1 text-xs leading-relaxed text-white/58">
+                        <p className="m-[0.1rem_0] text-[0.74rem]">
                             Disclaimer: Resume and experience level are collected purely to help us design engaging events for attendees!
                         </p>
 
 
                         {(status === "success") ? (
-                            <p className="pt-1 text-xs leading-relaxed text-white/58">We have received your application and will reach out soon!</p>
+                            <p className="m-0 text-[0.74rem] text-[#004f00]">We have received your application and will reach out soon!</p>
                         ) : (
                             <>
-                                {submitError && <p className="text-xs text-red-200/80">{submitError}</p>}
+                                {submitError && <p className="m-0 text-[0.74rem] text-[#8b0000]">{submitError}</p>}
                                 <button
                                 type="submit"
                                 disabled={status === "loading"}
-                                className="mt-1 w-fit border border-white/35 bg-black/35 px-5 py-2 text-sm uppercase tracking-[0.1em] text-white/85 transition-colors hover:border-cyan-200/65 hover:text-white disabled:opacity-50"
+                                className={`min-h-[1.8rem] w-fit min-w-[7.25rem] cursor-pointer bg-[var(--win95-face)] px-[0.75rem] py-[0.28rem] text-[0.8rem] text-black disabled:cursor-not-allowed disabled:text-[#555] active:pt-[0.34rem] active:[border-color:var(--win95-dark)_var(--win95-light)_var(--win95-light)_var(--win95-dark)] ${raisedBorder} ${dottedFocus}`}
                                 >
                                 {status === "loading" ? "Submitting..." : "Submit"}
                                 </button>
