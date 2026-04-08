@@ -6,16 +6,18 @@ import Background from "@/src/components/background"
 import ApplyApp from "@/src/components/apps/apply_app"
 import ApplyModal from "@/src/components/apps/modals/apply_modal"
 import TeamApp from "@/src/components/apps/team_app"
+import TeamModal from "@/src/components/apps/modals/team_modal"
 
 export default function Page() {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const [isTeamOpen, setIsTeamOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen">
       <Background />
       <main className="relative min-h-[calc(100vh-var(--taskbar-height))] p-4 max-[760px]:p-3">
         <ApplyApp isOpen={isApplyOpen} onOpen={() => setIsApplyOpen(true)} />
-        
+        <TeamApp isOpen={isTeamOpen} onOpen={() => setIsTeamOpen(true)} />
       </main>
 
       <footer
@@ -29,6 +31,7 @@ export default function Page() {
       </footer>
 
       <ApplyModal isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
+      <TeamModal isOpen={isTeamOpen} onClose={() => setIsTeamOpen(false)} />
     </div>
   );
 }
