@@ -25,10 +25,16 @@ export default function Page() {
         className="fixed inset-x-0 bottom-0 z-[32] flex h-[var(--taskbar-height)] items-center justify-between gap-[0.45rem] border-t-2 border-t-[var(--win95-light)] bg-[var(--win95-face)] px-[0.38rem] py-[0.28rem] shadow-[0_-2px_0_rgba(0,0,0,0.2),0_-8px_20px_rgba(255,255,255,0.12)] max-[760px]:gap-[0.3rem]"
         aria-label="Desktop taskbar"
       >
-        <span className="min-w-0 truncate whitespace-nowrap ml-20 pr-3 text-[1.12rem] font-black italic tracking-[0.01em] text-black [text-shadow:0_1px_0_rgba(255,255,255,0.35)] max-[760px]:text-[0.9rem]">
+        <span className="min-w-0 flex-1 truncate whitespace-nowrap pr-3 text-[1.06rem] font-black italic tracking-[0.01em] text-black [text-shadow:0_1px_0_rgba(255,255,255,0.35)] max-[760px]:text-[0.9rem]">
           AI Club Hackathon
         </span>
-        <Countdown />
+
+        <div className="flex items-center gap-[0.35rem]">
+          <span className="hidden items-center border border-solid bg-[#d9e7d9] px-[0.42rem] py-[0.24rem] text-[0.76rem] font-bold text-[#153d15] [border-color:var(--win95-shadow)_var(--win95-light)_var(--win95-light)_var(--win95-shadow)] md:flex">
+            Registration open
+          </span>
+          <Countdown />
+        </div>
       </footer>
 
       <ApplyModal isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />

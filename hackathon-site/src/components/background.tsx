@@ -21,9 +21,9 @@ uniform float u_time;
 
 #define WAVE_AMP 0.06
 #define ANIM_SPEED 2.0
-#define COLOUR_1 vec4(0.133, 1.0, 0.0, 1.0)
+#define COLOUR_1 vec4(1.0, 0.44, 0.02, 1.0)
 #define COLOUR_2 vec4(0.855, 0.0, 0.498, 1.0)
-#define COLOUR_3 vec4(0.06, 0.08, 0.06, 1.0)
+#define COLOUR_3 vec4(0.1, 0.05, 0.03, 1.0)
 #define CONTRAST 3.5
 #define LIGTHING 0.4
 #define PIXEL_FILTER 600.0

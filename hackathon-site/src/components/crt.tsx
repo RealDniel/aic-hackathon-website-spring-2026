@@ -20,7 +20,7 @@ const RGB_SHIFT_FRAG = `
 `;
 
 const FLICKER_INTENSITY = 0.02;
-const BASE_OPACITY = 0.62;
+const BASE_OPACITY = 0.67;
 const CRT_FPS = 30;
 const CRT_FRAME_INTERVAL = 1000 / CRT_FPS;
 
@@ -44,32 +44,32 @@ export default function CRT() {
 
     const cyanLayer = new Sprite(Texture.WHITE);
     cyanLayer.tint = 0x80e8ff;
-    cyanLayer.alpha = 0.16;
+    cyanLayer.alpha = 0.12;
 
     const magentaLayer = new Sprite(Texture.WHITE);
     magentaLayer.tint = 0xff7fe6;
-    magentaLayer.alpha = 0.08;
+    magentaLayer.alpha = 0.05;
     magentaLayer.blendMode = BLEND_MODES.ADD;
 
     app.stage.addChild(cyanLayer);
     app.stage.addChild(magentaLayer);
 
     const crtFilter = new CRTFilter({
-      curvature: 2,
+      curvature: 2.4,
       lineWidth: 2.5,
-      lineContrast: 0.25,
+      lineContrast: 0.34,
       verticalLine: false,
-      noise: 0.08,
+      noise: 0.09,
       noiseSize: 1.4,
       seed: 0.23,
-      vignetting: 0.28,
-      vignettingAlpha: 0.7,
-      vignettingBlur: 0.6,
+      vignetting: 0.22,
+      vignettingAlpha: 0.58,
+      vignettingBlur: 0.72,
       time: 0,
     });
 
     const rgbShiftFilter = new Filter(undefined, RGB_SHIFT_FRAG, {
-      uShift: 0.0012,
+      uShift: 0.0009,
     });
 
     app.stage.filters = [rgbShiftFilter, crtFilter];
@@ -103,7 +103,7 @@ export default function CRT() {
       view.style.opacity = String(flicker);
 
       rgbShiftFilter.uniforms.uShift =
-        0.0012 + Math.sin(crtFilter.time * 0.5) * 0.0003;
+        0.0009 + Math.sin(crtFilter.time * 0.5) * 0.0002;
 
       app.renderer.render(app.stage);
     };

@@ -34,6 +34,8 @@ export default function PixelCursor() {
   const frameRef = useRef(0);
   const posRef = useRef({ x: -100, y: -100 });
   const visibleRef = useRef(false);
+  const variantRef = useRef<"default" | "pointer">("default");
+  const hotspotRef = useRef(DEFAULT_HOTSPOT);
   const [variant, setVariant] = useState<"default" | "pointer">("default");
   const [enabled, setEnabled] = useState(false);
 
@@ -45,6 +47,19 @@ export default function PixelCursor() {
     finePointer.addEventListener("change", updateEnabled);
     return () => finePointer.removeEventListener("change", updateEnabled);
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (enabled) {
+      root.classList.add("custom-cursor-enabled");
+    } else {
+      root.classList.remove("custom-cursor-enabled");
+    }
+
+    return () => {
+      root.classList.remove("custom-cursor-enabled");
+    };
+  }, [enabled]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -59,7 +74,7 @@ export default function PixelCursor() {
         return;
       }
 
-      const hotspot = variant === "pointer" ? POINTER_HOTSPOT : DEFAULT_HOTSPOT;
+      const hotspot = hotspotRef.current;
       node.style.opacity = "1";
       node.style.transform = `translate3d(${posRef.current.x - hotspot.x}px, ${posRef.current.y - hotspot.y}px, 0)`;
     };
@@ -72,7 +87,13 @@ export default function PixelCursor() {
     const handleMove = (event: PointerEvent) => {
       posRef.current = { x: event.clientX, y: event.clientY };
       visibleRef.current = true;
-      setVariant(isPointerTarget(event.target) ? "pointer" : "default");
+      const nextVariant = isPointerTarget(event.target) ? "pointer" : "default";
+      if (nextVariant !== variantRef.current) {
+        variantRef.current = nextVariant;
+        hotspotRef.current =
+          nextVariant === "pointer" ? POINTER_HOTSPOT : DEFAULT_HOTSPOT;
+        setVariant(nextVariant);
+      }
       queueRender();
     };
 
@@ -100,7 +121,7 @@ export default function PixelCursor() {
         window.cancelAnimationFrame(frameRef.current);
       }
     };
-  }, [enabled, variant]);
+  }, [enabled]);
 
   if (!enabled) return null;
 

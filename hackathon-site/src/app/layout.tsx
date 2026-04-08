@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Club Hackathon",
   description: "Website for the AIC's inaugural hackathon during Spring 2026!",
+  icons: {
+    icon: "/assets/icons/AIC%20pixel%20logo%20no%20bg.png",
+    shortcut: "/assets/icons/AIC%20pixel%20logo%20no%20bg.png",
+    apple: "/assets/icons/AIC%20pixel%20logo%20no%20bg.png",
+  },
 };
 
 export default function RootLayout({
