@@ -31,6 +31,8 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] [font-family:var(--font-win95)] text-[14px] leading-[1.2]">
         {children}
         <CRT />
+        <div className="crt-glow-line" aria-hidden="true" />
+        <div className="crt-bezel" aria-hidden="true" />
       </body>
     </html>
   );

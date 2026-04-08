@@ -2,16 +2,34 @@
 
 import { useEffect, useRef } from "react";
 import { CRTFilter } from "@pixi/filter-crt";
-import { Application, BLEND_MODES, Sprite, Texture } from "pixi.js";
+import { Application, BLEND_MODES, Filter, Sprite, Texture } from "pixi.js";
+
+const RGB_SHIFT_FRAG = `
+  precision mediump float;
+  varying vec2 vTextureCoord;
+  uniform sampler2D uSampler;
+  uniform float uShift;
+
+  void main() {
+    vec2 uv = vTextureCoord;
+    float r = texture2D(uSampler, uv + vec2(uShift, 0.0)).r;
+    vec4 center = texture2D(uSampler, uv);
+    float b = texture2D(uSampler, uv - vec2(uShift, 0.0)).b;
+    gl_FragColor = vec4(r, center.g, b, center.a);
+  }
+`;
+
+const FLICKER_INTENSITY = 0.035;
+const BASE_OPACITY = 0.7;
+const CRT_FPS = 30;
+const CRT_FRAME_INTERVAL = 1000 / CRT_FPS;
 
 export default function CRT() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const view = canvasRef.current;
-    if (!view) {
-      return;
-    }
+    if (!view) return;
 
     const app = new Application({
       view,
@@ -19,10 +37,9 @@ export default function CRT() {
       backgroundAlpha: 0,
       antialias: false,
       autoDensity: true,
-      resolution: Math.min(window.devicePixelRatio || 1, 1.5),
+      resolution: 1,
     });
 
-    // Run our own RAF loop so filter animation is independent from React updates.
     app.stop();
 
     const cyanLayer = new Sprite(Texture.WHITE);
@@ -42,7 +59,7 @@ export default function CRT() {
       lineWidth: 2.5,
       lineContrast: 0.35,
       verticalLine: false,
-      noise: 0.0,
+      noise: 0.12,
       noiseSize: 1.4,
       seed: 0.23,
       vignetting: 0.28,
@@ -51,12 +68,15 @@ export default function CRT() {
       time: 0,
     });
 
-    app.stage.filters = [crtFilter];
+    const rgbShiftFilter = new Filter(undefined, RGB_SHIFT_FRAG, {
+      uShift: 0.0012,
+    });
+
+    app.stage.filters = [rgbShiftFilter, crtFilter];
 
     const resizeLayers = () => {
       const width = app.renderer.width;
       const height = app.renderer.height;
-
       cyanLayer.width = width;
       cyanLayer.height = height;
       magentaLayer.width = width;
@@ -67,12 +87,25 @@ export default function CRT() {
     app.renderer.on("resize", resizeLayers);
 
     let frameId = 0;
+    let lastFrame = 0;
 
-    const animate = () => {
+    const animate = (now: number) => {
+      frameId = window.requestAnimationFrame(animate);
+      const delta = now - lastFrame;
+      if (delta < CRT_FRAME_INTERVAL) return;
+      lastFrame = now - (delta % CRT_FRAME_INTERVAL);
+
       crtFilter.time += 0.045;
       crtFilter.seed = (crtFilter.seed + 0.0018) % 1;
+
+      const flicker =
+        BASE_OPACITY + (Math.random() - 0.5) * 2 * FLICKER_INTENSITY;
+      view.style.opacity = String(flicker);
+
+      rgbShiftFilter.uniforms.uShift =
+        0.0012 + Math.sin(crtFilter.time * 0.5) * 0.0003;
+
       app.renderer.render(app.stage);
-      frameId = window.requestAnimationFrame(animate);
     };
 
     frameId = window.requestAnimationFrame(animate);
