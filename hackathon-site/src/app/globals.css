@@ -41,6 +41,47 @@ body {
   opacity: 0.7;
 }
 
+.crt-glow-line {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 42;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.015) 30%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.015) 70%,
+    transparent 100%
+  );
+  animation: glow-scan 7s linear infinite;
+}
+
+@keyframes glow-scan {
+  0% { transform: translateY(-100px); }
+  100% { transform: translateY(100vh); }
+}
+
+.crt-bezel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  border: 3px solid rgba(5, 5, 5, 0.6);
+  box-shadow:
+    inset 0 0 120px 40px rgba(0, 0, 0, 0.45),
+    inset 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-glow-line {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 .countdown-container {
   position: fixed;
   right: 2rem;
@@ -117,9 +158,12 @@ body {
 
 .background {
   position: fixed;
+  inset: 0;
   z-index: -100;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   background-color: black;
+  image-rendering: pixelated;
 }
 
 .app {
