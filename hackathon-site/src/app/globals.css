@@ -26,3 +26,66 @@
 body {
   margin: 0;
 }
+
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+}
+
+.crt-canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: screen;
+  opacity: 0.66;
+}
+
+.crt-scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.24) 0px,
+    rgba(0, 0, 0, 0.24) 1px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 3px
+  );
+}
+
+.crt-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 0 0 110px rgba(0, 0, 0, 0.22),
+    inset 0 0 240px rgba(0, 0, 0, 0.12);
+}
+
+.screen-focus-lift {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(
+    70% 55% at 50% 45%,
+    rgba(255, 255, 255, 0.19) 0%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0) 72%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
+  }
+
+  input[type="file"]::file-selector-button,
+  input[type="file"]::-webkit-file-upload-button {
+    cursor: none !important;
+  }
+}

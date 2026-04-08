@@ -19,8 +19,8 @@ const RGB_SHIFT_FRAG = `
   }
 `;
 
-const FLICKER_INTENSITY = 0.035;
-const BASE_OPACITY = 0.7;
+const FLICKER_INTENSITY = 0.02;
+const BASE_OPACITY = 0.62;
 const CRT_FPS = 30;
 const CRT_FRAME_INTERVAL = 1000 / CRT_FPS;
 
@@ -57,14 +57,14 @@ export default function CRT() {
     const crtFilter = new CRTFilter({
       curvature: 2,
       lineWidth: 2.5,
-      lineContrast: 0.35,
+      lineContrast: 0.25,
       verticalLine: false,
-      noise: 0.12,
+      noise: 0.08,
       noiseSize: 1.4,
       seed: 0.23,
       vignetting: 0.28,
-      vignettingAlpha: 0.9,
-      vignettingBlur: 0.45,
+      vignettingAlpha: 0.7,
+      vignettingBlur: 0.6,
       time: 0,
     });
 
@@ -118,10 +118,10 @@ export default function CRT() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-40 h-screen w-screen mix-blend-screen opacity-70"
-      aria-hidden="true"
-    />
+    <div className="crt-overlay" aria-hidden="true">
+      <canvas ref={canvasRef} className="crt-canvas" />
+      <div className="crt-scanlines" />
+      <div className="crt-vignette" />
+    </div>
   );
 }

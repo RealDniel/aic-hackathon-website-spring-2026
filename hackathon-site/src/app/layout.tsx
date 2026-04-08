@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CRT from "../components/crt";
+import PixelCursor from "../components/pixel_cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +29,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] [font-family:var(--font-win95)] text-[14px] leading-[1.2]">
+      <body className="isolate flex min-h-full flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)] [font-family:var(--font-win95)] text-[14px] leading-[1.2]">
         {children}
+        <PixelCursor />
         <CRT />
-        <div className="crt-glow-line" aria-hidden="true" />
-        <div className="crt-bezel" aria-hidden="true" />
       </body>
     </html>
   );
