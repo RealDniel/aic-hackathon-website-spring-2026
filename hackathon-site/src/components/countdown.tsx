@@ -38,26 +38,32 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const updateCountdown = () => {
       setCountdown(getCountdownParts(TARGET_DATE));
+    };
+
+    updateCountdown();
+
+    const intervalId = setInterval(() => {
+      updateCountdown();
     }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
 
+  const timeText = countdown.isComplete
+    ? "LIVE"
+    : `${countdown.days}:${String(countdown.hours).padStart(2, "0")}:${String(countdown.minutes).padStart(2, "0")}:${String(countdown.seconds).padStart(2, "0")}`;
+
   return (
-    <div className="countdown-container">
-      <section>
-        {countdown.isComplete ? (
-          <h1>The event has started.</h1>
-        ) : (
-            <>
-                <h1 className="countdown">
-                    {countdown.days}:{String(countdown.hours).padStart(2, "0")}:{String(countdown.minutes).padStart(2, "0")}:{String(countdown.seconds).padStart(2, "0")}
-                </h1>
-            </>
-        )}
-      </section>
+    <div
+      className="flex h-full min-w-[9rem] items-center justify-between gap-2 border border-solid bg-[#c8c8c8] px-[0.45rem] text-[0.74rem] [font-variant-numeric:tabular-nums] [border-color:var(--win95-shadow)_var(--win95-light)_var(--win95-light)_var(--win95-shadow)] [text-shadow:0_0_1px_rgba(178,255,255,0.7),0_0_10px_rgba(0,255,255,0.25)] max-[760px]:ml-auto max-[760px]:min-w-[8rem]"
+      role="status"
+      aria-live="polite"
+      aria-label="Hackathon countdown"
+    >
+      <span className="font-bold tracking-[0.02em]">AIC</span>
+      <span className="font-bold tracking-[0.02em]">{timeText}</span>
     </div>
   );
 }

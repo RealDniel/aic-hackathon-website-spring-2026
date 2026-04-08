@@ -117,5 +117,11 @@ export default function CRT() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="crt-overlay" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-40 h-screen w-screen mix-blend-screen opacity-70"
+      aria-hidden="true"
+    />
+  );
 }
