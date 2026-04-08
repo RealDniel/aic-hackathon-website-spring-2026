@@ -57,7 +57,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                 onClick={(event) => event.stopPropagation()}
             >
                 <header className="flex min-h-[1.8rem] items-center justify-between border-b border-b-[var(--win95-shadow)] bg-[linear-gradient(90deg,var(--win95-title-start)_0%,var(--win95-title-end)_100%)] px-[0.45rem] py-[0.2rem] pr-[0.32rem]">
-                    <span className="select-none text-[0.84rem] font-bold tracking-[0.02em] text-white">APPLICATION</span>
+                    <span className="select-none text-[0.84rem] font-bold tracking-[0.02em] text-white">AI CLUB HACKATHON APPLICATION</span>
                     <button
                         type="button"
                         className={`h-[1.15rem] w-[1.2rem] cursor-pointer bg-[var(--win95-face)] text-[0.76rem] font-bold leading-none text-black active:pt-px active:[border-color:var(--win95-dark)_var(--win95-light)_var(--win95-light)_var(--win95-dark)] ${raisedBorder}`}

@@ -38,7 +38,16 @@ export default function TeamModal({ isOpen, onClose }: TeamModalProps) {
                 {/* Main body */}
                 <div className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-auto bg-[#c0c0c0]">
                     <p className="m-0 text-center">Coming VERY soon!</p>
-                    <p>Apply to our hackathon with the app above this one!</p>
+                    <p>Apply to our hackathon with the <span className="font-bold underline">APPLY</span> app above this one!</p>
+                    <p className="my-10">AI Club is also hiring new officers! If you're interested, click the link below:</p>
+                    <a
+                        href="https://forms.gle/JX3X8qhYYBon4aw67"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-blue-700 underline"
+                    >
+                        I WANT TO JOIN AI CLUB!
+                    </a>
                 </div>
             </section>
         </div>
