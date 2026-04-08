@@ -213,5 +213,11 @@ export default function Background() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="background" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 -z-[100] h-screen w-screen"
+      aria-hidden="true"
+    />
+  );
 }

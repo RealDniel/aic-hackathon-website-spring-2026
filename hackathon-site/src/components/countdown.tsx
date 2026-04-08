@@ -57,12 +57,12 @@ export default function Countdown() {
 
   return (
     <div
-      className="flex h-full min-w-[9rem] items-center justify-between gap-2 border border-solid bg-[#c8c8c8] px-[0.45rem] text-[0.74rem] [font-variant-numeric:tabular-nums] [border-color:var(--win95-shadow)_var(--win95-light)_var(--win95-light)_var(--win95-shadow)] [text-shadow:0_0_1px_rgba(178,255,255,0.7),0_0_10px_rgba(0,255,255,0.25)] max-[760px]:ml-auto max-[760px]:min-w-[8rem]"
+      className="flex h-full min-w-[11.75rem] items-center justify-between gap-[0.7rem] border border-solid bg-[#c8c8c8] px-[0.7rem] text-[0.9rem] [font-variant-numeric:tabular-nums] [border-color:var(--win95-shadow)_var(--win95-light)_var(--win95-light)_var(--win95-shadow)] max-[760px]:min-w-[10rem]"
       role="status"
       aria-live="polite"
       aria-label="Hackathon countdown"
     >
-      <span className="font-bold tracking-[0.02em]">AIC</span>
+      <span className="font-bold tracking-[0.02em]">Time until start: </span>
       <span className="font-bold tracking-[0.02em]">{timeText}</span>
     </div>
   );

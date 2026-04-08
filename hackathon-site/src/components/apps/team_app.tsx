@@ -1,9 +1,9 @@
-type ApplyAppProps = {
+type TeamAppProps = {
     isOpen: boolean;
     onOpen: () => void;
 };
 
-export default function ApplyApp({ isOpen, onOpen }: ApplyAppProps) {
+export default function TeamApp({ isOpen, onOpen }: TeamAppProps) {
 
     return (
         <button
@@ -20,7 +20,7 @@ export default function ApplyApp({ isOpen, onOpen }: ApplyAppProps) {
                 -_-
             </span>
             <p className="m-0 select-none text-[clamp(1.35rem,2.775vw,1.65rem)] leading-none tracking-[0.02em] text-white [text-shadow:1px_1px_0_#000]">
-                APPLY
+                TEAM
             </p>
         </button>
     );
