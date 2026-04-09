@@ -150,7 +150,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
 
                         <div className="grid gap-[0.2rem]">
                             <label htmlFor="apply-ai-experience" className="text-[0.76rem] font-bold tracking-[0.01em]">
-                                AI Experience
+                                AI / ML Experience
                             </label>
                             <select
                                 id="apply-ai-experience"
@@ -162,9 +162,9 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 <option value="" disabled>
                                     Select an option
                                 </option>
-                                <option value="low">Brand new to AI!</option>
+                                <option value="low">Brand new to AI and Machine Learning!</option>
                                 <option value="medium">Familiar with core concepts</option>
-                                <option value="high">AI Pro</option>
+                                <option value="high">I'm an AI/ML Pro</option>
                             </select>
                         </div>
 
