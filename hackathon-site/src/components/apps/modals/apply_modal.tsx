@@ -32,10 +32,17 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
         setStatus("loading")
 
         try {
-            await submitRegistration(formData);
+            const result = await submitRegistration(formData);
+
+            if (!result.ok) {
+                setSubmitError(result.error);
+                setStatus("error");
+                return;
+            }
+
             setStatus("success")
         } catch (err) {
-            setSubmitError(err instanceof Error ? err.message : "Something went wrong");
+            setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
             setStatus("error");
         }
     };
