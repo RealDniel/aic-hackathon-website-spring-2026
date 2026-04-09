@@ -88,7 +88,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 autoComplete="name"
                                 required
                                 className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black placeholder:text-[#666] outline-none ${sunkenBorder} ${dottedFocus}`}
-                                placeholder="Zheng Chen"
+                                placeholder="Benny Beaver"
                             />
                         </div>
 
@@ -106,7 +106,7 @@ export default function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
                                 aria-invalid={Boolean(emailError)}
                                 aria-describedby="apply-email-error"
                                 className={`min-h-[1.8rem] w-full bg-white px-[0.4rem] py-[0.25rem] text-[0.8rem] text-black placeholder:text-[#666] outline-none ${sunkenBorder} ${dottedFocus}`}
-                                placeholder="chenz22@oregonstate.edu"
+                                placeholder="bennybeav@oregonstate.edu"
                             />
                             {emailError ? (
                                 <p id="apply-email-error" className="m-0 text-[0.74rem] text-[#8b0000]">
