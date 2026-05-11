@@ -37,16 +37,21 @@ export default function TeamModal({ isOpen, onClose }: TeamModalProps) {
                 </header>
                 {/* Main body */}
                 <div className="flex min-h-0 flex-1 flex-col items-center justify-center overflow-auto bg-[#c0c0c0]">
-                    <p className="m-0 text-center">Coming VERY soon!</p>
+                    <p className="m-5 text-center text-3xl font-bold italic">Our Team</p>
                     <p>Apply to our hackathon with the <span className="font-bold underline">APPLY</span> app above this one!</p>
-                    <p className="my-10">AI Club is also hiring new officers! If you&apos;re interested, click the link below:</p>
+
+                    <p className="my-5 font-bold italic">This hackathon is brought to you by the <a href="https://apps.ideal-logic.com/osusee?key=F3T9-25VWY_5878-CZ4R_0a27fcc4" className="not-italic font-bold text-blue-700 underline">AI Club</a> as well as ACM-W.</p>
+                    <span className="m-5">AI Club is hosting this hackathon for two main reasons. The first of which is that we want to transition our club’s structure into one with larger events that have more reach across campus. This hackathon will serve as our first large event, and teach us about what goes into planning and execution of such events. It will allow us to make a memorable impression as our leadership shifts and goals change. Secondly, we want to provide students with a hands-on learning experience where they will be given the opportunity to work with new people, work on new things, and broaden their experience significantly. Hackathons are traditionally a great avenue for this, and with most of our leadership having participated in a multitude of hackathons previously, hosting one ourselves will be deeply rewarding and fun.</span>
+
+
+                    <p className="mt-20">AI Club is also hiring new officers! If you&apos;re interested, click the link below:</p>
                     <a
                         href="https://forms.gle/JX3X8qhYYBon4aw67"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-bold text-blue-700 underline"
+                        className="font-bold text-blue-700 underline my-5"
                     >
-                        I WANT TO JOIN AI CLUB!
+                        I WANT TO BE AN AI CLUB OFFICER!
                     </a>
                 </div>
             </section>
