@@ -7,10 +7,13 @@ import ApplyApp from "@/src/components/apps/apply_app"
 import ApplyModal from "@/src/components/apps/modals/apply_modal"
 import TeamApp from "@/src/components/apps/team_app"
 import TeamModal from "@/src/components/apps/modals/team_modal"
+import TimelineApp from "@/src/components/apps/timeline_app"
+import TimelineModal from "@/src/components/apps/modals/timeline_modal"
 
 export default function Page() {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const [isTeamOpen, setIsTeamOpen] = useState(false);
+  const [isTimelineOpen, setIsTimelineOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen">
@@ -19,6 +22,7 @@ export default function Page() {
       <main className="relative z-[20] min-h-[calc(100vh-var(--taskbar-height))] p-4 max-[760px]:p-3">
         <ApplyApp isOpen={isApplyOpen} onOpen={() => setIsApplyOpen(true)} />
         <TeamApp isOpen={isTeamOpen} onOpen={() => setIsTeamOpen(true)} />
+        <TimelineApp isOpen={isTimelineOpen} onOpen={() => setIsTimelineOpen(true)} />
       </main>
 
       <footer
@@ -39,6 +43,7 @@ export default function Page() {
 
       <ApplyModal isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
       <TeamModal isOpen={isTeamOpen} onClose={() => setIsTeamOpen(false)} />
+      <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
     </div>
   );
 }
