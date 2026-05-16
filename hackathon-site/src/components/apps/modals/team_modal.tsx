@@ -53,6 +53,9 @@ export default function TeamModal({ isOpen, onClose }: TeamModalProps) {
                     >
                         I WANT TO BE AN AI CLUB OFFICER!
                     </a>
+                    <p className="mt-4 text-center">
+                        Join Our Discord for Live Updates and Announcements: <a href="https://discord.gg/jUAF8hMA" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-700 underline">https://discord.gg/jUAF8hMA</a>
+                    </p>
                 </div>
             </section>
         </div>

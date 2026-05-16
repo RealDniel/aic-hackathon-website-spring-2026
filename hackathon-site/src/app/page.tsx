@@ -9,11 +9,14 @@ import TeamApp from "@/src/components/apps/team_app"
 import TeamModal from "@/src/components/apps/modals/team_modal"
 import TimelineApp from "@/src/components/apps/timeline_app"
 import TimelineModal from "@/src/components/apps/modals/timeline_modal"
+import TracksApp from "@/src/components/apps/tracks_app"
+import TracksModal from "@/src/components/apps/modals/tracks_modal"
 
 export default function Page() {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const [isTeamOpen, setIsTeamOpen] = useState(false);
   const [isTimelineOpen, setIsTimelineOpen] = useState(false);
+  const [isTracksOpen, setIsTracksOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen">
@@ -23,14 +26,19 @@ export default function Page() {
         <ApplyApp isOpen={isApplyOpen} onOpen={() => setIsApplyOpen(true)} />
         <TeamApp isOpen={isTeamOpen} onOpen={() => setIsTeamOpen(true)} />
         <TimelineApp isOpen={isTimelineOpen} onOpen={() => setIsTimelineOpen(true)} />
+        <TracksApp isOpen={isTracksOpen} onOpen={() => setIsTracksOpen(true)} />
       </main>
 
       <footer
-        className="fixed inset-x-0 bottom-0 z-[32] flex h-[var(--taskbar-height)] items-center justify-between gap-[0.45rem] border-t-2 border-t-[var(--win95-light)] bg-[var(--win95-face)] px-[0.38rem] py-[0.28rem] shadow-[0_-2px_0_rgba(0,0,0,0.2),0_-8px_20px_rgba(255,255,255,0.12)] max-[760px]:gap-[0.3rem]"
+        className="relative fixed inset-x-0 bottom-0 z-[32] flex h-[var(--taskbar-height)] items-center justify-between gap-[0.45rem] border-t-2 border-t-[var(--win95-light)] bg-[var(--win95-face)] px-[0.38rem] py-[0.28rem] shadow-[0_-2px_0_rgba(0,0,0,0.2),0_-8px_20px_rgba(255,255,255,0.12)] max-[760px]:gap-[0.3rem]"
         aria-label="Desktop taskbar"
       >
         <span className="min-w-0 flex-1 truncate whitespace-nowrap pr-3 text-[1.06rem] font-black italic tracking-[0.01em] text-black [text-shadow:0_1px_0_rgba(255,255,255,0.35)] max-[760px]:text-[0.9rem]">
           AI Club Hackathon
+        </span>
+
+        <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">
+          Sponsored by Lovable
         </span>
 
         <div className="flex items-center gap-[0.35rem]">
@@ -44,6 +52,7 @@ export default function Page() {
       <ApplyModal isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
       <TeamModal isOpen={isTeamOpen} onClose={() => setIsTeamOpen(false)} />
       <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
+      <TracksModal isOpen={isTracksOpen} onClose={() => setIsTracksOpen(false)} />
     </div>
   );
 }

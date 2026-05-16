@@ -29,7 +29,7 @@ export default function TeamApp({ isOpen, onOpen }: TeamAppProps) {
                 />
             </span>
             <p className="m-0 select-none text-[clamp(1.35rem,2.775vw,1.65rem)] leading-none tracking-[0.02em] text-white [text-shadow:0_2px_0_#000,0_0_10px_rgba(255,255,255,0.2)] group-hover:text-[#f6fbff] group-focus-visible:text-[#f6fbff]">
-                TEAM
+                INFO
             </p>
         </button>
     );

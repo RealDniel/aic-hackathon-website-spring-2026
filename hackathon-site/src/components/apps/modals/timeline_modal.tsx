@@ -14,11 +14,12 @@ const TIMELINE_ENTRIES: TimelineEntry[] = [
     { title: "Saturday, May 16 - 12:00 PM: KEC opens" },
     { title: "Saturday, May 16 - 1:00 PM: Opening ceremony" },
     { title: "Saturday, May 16 - 2:00 PM: Hacking starts!" },
-    { title: "Saturday, May 16 - 3:00 PM: ACM-W workshop" },
-    {
-        title: "Saturday, May 16 - 4:00 PM to 7:00 PM: AI Club workshops (hourly)",
-        details: "Each workshop starts at the top of the hour and runs for 20 minutes.",
-    },
+    { title: "Saturday, May 16 - 2:30 PM: ACM-W Workshop" },
+    { title: "Saturday, May 16 - 3:00 PM: ACM-W Workshop" },
+    { title: "Saturday, May 16 - 3:30 PM: AI Club Lovable Workshop" },
+    { title: "Saturday, May 16 - 4:00 PM: AI Club Computer Vision Intro Workshop" },
+    { title: "Saturday, May 16 - 4:30 PM: AI Club Agents Workshop" },
+    { title: "Saturday, May 16 - 5:00 PM: AI Club Pictionary Challenge" },
     {
         title: "Wednesday, May 20 - 6:00 PM to 8:00 PM: Workshops, networking, and office hours",
         details: "Location: Owen 106.",
