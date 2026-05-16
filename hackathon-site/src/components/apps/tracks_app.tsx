@@ -20,11 +20,11 @@ export default function TracksApp({ isOpen, onOpen }: TracksAppProps) {
                 aria-hidden="true"
             >
                 <Image
-                    src="/assets/icons/AIC%20pixel%20logo%20no%20bg.png"
+                    src="/assets/icons/network.png"
                     alt=""
                     fill
                     sizes="(max-width: 760px) 72px, 96px"
-                    className="object-contain [image-rendering:pixelated]"
+                    className="object-contain [image-rendering:pixelated] scale-[2]"
                     priority
                 />
             </span>
